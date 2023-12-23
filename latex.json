@@ -1,0 +1,130 @@
+{
+	"Plantilla general": {
+		"prefix": ";pl01",
+		"body": [
+		  "\\documentclass[12pt,letterpaper]{article}",
+		  "",
+		  "\\usepackage[spanish]{babel}",
+		  "\\usepackage[margin=2.54cm]{geometry}",
+		  "\\usepackage{graphicx}",
+		  "\\usepackage{setspace}",
+		  "\\onehalfspacing",
+		  "\\usepackage{fontspec}",
+		  "\\usepackage{array}",
+		  "",
+		  "\\title{$1}",
+		  "\\author{Jesús Hernández Moreno}",
+		  "\\date{\\today}",
+		  "",
+		  "\\begin{document}",
+		  "$2",
+		  "\\end{document}"
+		],
+		"description": "Plantilla general"
+	  },
+	  "TablaGeneral": {
+		"prefix": ";tab",
+		"body": [
+		  "    \\begin{tabular}{$1} %Numero y formato de columnas",
+		  "        \\hline",
+		  "        \\textbf{$2} & \\textbf{} & \\textbf{} & \\textbf{} % Encabezados",
+		  "        \\hline \\hline",
+		  "        & & &  \\\\",
+		  "        & & &  \\\\",
+		  "        & & &  \\\\",
+		  "        \\hline",
+		  "    \\end{tabular}"
+		],
+		"description": "TablaGeneral"
+	  },
+	  "Texto en negrita": {
+		"prefix": "bf",
+		"body": [
+		  "\\textbf{$1}$2"
+		],
+		"description": "Texto en negrita"
+	  },
+	  "Texto en cursiva": {
+		"prefix": "it",
+		"body": [
+		  "\\textit{$1}$2"
+		],
+		"description": "Texto en cursiva"
+	  },
+	  "Texto en versalitas": {
+		"prefix": "sc",
+		"body": [
+		  "\\textsc{$1}$2"
+		],
+		"description": "Texto en versalitas"
+	  },
+	  "Glosa negación": {
+		"prefix": "nn",
+		"body": [
+		  "\\textsc{neg}"
+		],
+		"description": "Glosa negación"
+	  },
+	  "Cita año": {
+		"prefix": "ct",
+		"body": [
+		  "\\citet{$1}"
+		],
+		"description": "Cita año"
+	  },
+	  "Cita paréntesis": {
+		"prefix": "cp",
+		"body": [
+		  "\\citep{$1}"
+		],
+		"description": "Cita paréntesis"
+	  },
+	  "Tabla glosa": {
+		"prefix": "tt",
+		"body": [
+		  "\\begin{tabular}{$1}",
+		  "($2) &  \\\\",
+		  "& \\\\",
+		  "& \\multicolumn{}{l}{``''}",
+		  "\\end{tabular} \\vspace{0.5cm}"
+		],
+		"description": "Tabla glosa"
+	  },
+	  "Sección no numerada": {
+		"prefix": "sec",
+		"body": [
+		  "\\section*{$1}"
+		],
+		"description": "Sección no numerada"
+	  },
+	  "Sin sangría": {
+		"prefix": "no",
+		"body": [
+		  "\\noindent"
+		],
+		"description": "Sin sangría"
+	  },
+	  "Separador de celda": {
+		"prefix": "yy",
+		"body": [
+		  "&"
+		],
+		"description": "Separador de celda"
+	  },
+	  "Entorno IPA": {
+		"prefix": "ipa",
+		"body": [
+		  "{\\setmainfont{Doulos SIL} $1}"
+		],
+		"description": "Entorno IPA"
+	  },
+	  "Comenzar entorno": {
+		"prefix": "bb",
+		"body": [
+		  "\\begin{$1}",
+		  "$2",
+		  "\\end{$1}"
+		],
+		"description": "Comenzar entorno"
+	  }
+}
