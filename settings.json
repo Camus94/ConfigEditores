@@ -9,6 +9,24 @@
     "editor.hideCursorInOverviewRuler": true,
     "editor.formatOnSave": false,
     // "latex-workshop.view.pdf.invert": 1
+    // Archivos excluidos del explorador
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.fdb_latexmk": true,
+        "**/Thumbs.db": true,
+        "**/*.bbl": true,
+        "**/*.bcf": true,
+        "**/*.blg": true,
+        "**/*.fls": true,
+        "**/*.xml": true,
+        "**/*.log": true,
+        "**/*.xdv": true,
+        "**/*.aux": true
+    },
     // Motor de compilación xelatex
     "latex-workshop.latex.tools": [{
         "name": "latexmk",
@@ -106,5 +124,8 @@
             "xelatex"
         ]
     }
-]
+],
+"explorer.autoRevealExclude": {
+    "**/.aux": true
+}
 }
