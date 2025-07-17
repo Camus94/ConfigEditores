@@ -18,11 +18,11 @@ call plug#end() 			"cerramos el llamado de los plugins
 set number 				"muestra los numeros de cada linea en la parte izquierda 
 set relativenumber 			"la distribucion de los numeros en lineas de manera relativa
 set mouse=a 				"permite la interaccion con el mouse
-"set noshowmode				"me deja de mostrar el modo en el que estamos 'normal, insert, visual, etc'
 syntax enable 				"activa el coloreado de sintaxis en algunos tipos de archivos como html, c, c++
 set encoding=utf-8 			"permite setear la codificación de archivos para aceptar caracteres especiales
 set sw=4 				"la indentación genera 4 espacios
 set clipboard=unnamed
+set guicursor=n-v-c:block,i-ci:ver25,r-cr:hor20
 
 		
 "configuracion del tema
