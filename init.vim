@@ -1,79 +1,86 @@
-":::instalacion de plugins:::
+let mapleader = " " 
 
-call plug#begin('~/AppData/Local/nvim/plugged') 	"directorio donde se van a instalar los plugins
+call plug#begin()
 
-"plugins
-Plug 'joshdick/onedark.vim' 		"tema
-Plug 'vim-airline/vim-airline'		"diseño de la barra en la cual se muestran los modos, la linea, etc.
-Plug 'vim-airline/vim-airline-themes'	"temas para el vim-airline
-Plug 'preservim/nerdtree'		"gestor de archivos en forma de arbol.
-Plug 'christoomey/vim-tmux-navigator'	"poder navegar entre archivos abiertos
-Plug 'jiangmiao/auto-pairs'		"autocompletado de llaves, corchetes, etc.
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+Plug 'hkupty/iron.nvim'
+Plug 'neovim/nvim-lspconfig'           " Configurador LSP
+Plug 'hrsh7th/nvim-cmp'                " Autocompletado
+Plug 'hrsh7th/cmp-nvim-lsp'            " Conexión cmp ↔ LSP
+Plug 'hrsh7th/cmp-buffer'              " Sugerencias del buffer actual
+Plug 'hrsh7th/cmp-path'                " Autocompletado de rutas
+Plug 'hrsh7th/cmp-cmdline'             " Completado en línea de comandos
+Plug 'L3MON4D3/LuaSnip'                " Snippets (requerido por cmp)
+Plug 'saadparwaiz1/cmp_luasnip'        " Integración cmp ↔ LuaSnip
 
-call plug#end() 			"cerramos el llamado de los plugins
+call plug#end()
 
-"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+"""" CONFIGURACIONES BASICAS
 
-"CONFIGURACIONES BASICAS 
-set number 				"muestra los numeros de cada linea en la parte izquierda 
-set relativenumber 			"la distribucion de los numeros en lineas de manera relativa
-set mouse=a 				"permite la interaccion con el mouse
-syntax enable 				"activa el coloreado de sintaxis en algunos tipos de archivos como html, c, c++
-set encoding=utf-8 			"permite setear la codificación de archivos para aceptar caracteres especiales
-set sw=4 				"la indentación genera 4 espacios
+set number
+set relativenumber
+set mouse=a
+syntax enable
+set encoding=utf-8
+set sw=4
 set clipboard=unnamed
-set guicursor=n-v-c:block,i-ci:ver25,r-cr:hor20
 
-		
-"configuracion del tema
-set termguicolors 			"activa el true color en la terminal
-colorscheme onedark 			"activar el tema onedark
+"""""CONFIGURACION DEL TEMA
+set termguicolors
+colorscheme onedark
 
-"configuracion de vim-airline
-let g:airline#extensions#tabline#enabled = 1	"muestra la linea de pestaña en la que estamos buffer
-let g:airline#extensions#tabline#formatter = 'unique_tail'	"muestra solo el nombre del archivo que estamos modificando
-let g:airline_theme='onedark'	"el tema de airline
+"""IRONVIM"""
+lua require("iron_config")
+lua require("completion_config")
 
-"configuracion de nerdtree
+""""configuracion de vim-airline
+"let g:airline#extensions#tabline#enabled = 1	"muestra la linea de pestaña en la que estamos buffer
+let g:airline#extensions#tabline#formatter = 'unique_tail'	
+let g:airline_theme='onedark'
+
+""""configuracion de nerdtree
 "mapeando el abrir y cerrar de nerdtree con nerdtreetoggle vemos los archivos en el arbol y podemos cerrarlo a la vez, map es la C mayuscula representa el
 "control y -n la tecla n lo que indica que realizará la siguiente funcion de excribir el comando NERDTreeToggle y CR significa ENTER.
 map <C-n> :NERDTreeToggle<CR>
 
-"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-" Atajos de teclado y snippets
-
-let mapleader = ","
-
-"Navegación por guias
-
+""""Navegación por guias
 inoremap ,gg <++>
-inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
-map <leader><leader> <Esc>/<++><Enter>"_c4l
+inoremap ,, <Esc>/<++><Enter>"_c4l
+vnoremap ,, <Esc>/<++><Enter>"_c4l
+map ,, <Esc>/<++><Enter>"_c4l
 
 "Controles generales
 inoremap <C-s> <Esc>:w<CR>a
 inoremap ;; <Esc>
-nnoremap ;; a
+"nnoremap ;; a
 
 "Atajos LaTeX
-inoremap ,sc \textsc{}<++><Esc>4hi
-inoremap ,ss \section*{}<++><Esc>4hi
-inoremap ,uu \usepackage{}<++><Esc>4hi
-inoremap ,us \usepackage[]{<++>}<++><Esc>10hi
-inoremap ,bf \textbf{}<++><Esc>4hi
-inoremap ,ct \citet{}<++><Esc>4hi
-inoremap ,mc \multicolumn{}{l}{``<++>''}<++><Esc>17hi
-inoremap ,ts \textsuperscript{}<++><Esc>4hi
-inoremap ,cp \citep{}<++><Esc>4hi
-inoremap ,it \textit{}<++><Esc>4hi
-inoremap ,in \include{}<++><Esc>4hi
-inoremap ,nn \textsc{neg}
-inoremap ,no \noindent
-inoremap ,tt \begin{tabular}{<++>}<CR><++><Space>\\<CR><++><Space>\\<CR><++><Space>\\<CR>\end{tabular}<++>
-inoremap ,ct \citet{}<++><Esc>4hi
-inoremap ,ipa {\setmainfont{Doulos SIL}<Space>}<Esc>1hi
-inoremap ,05 \vspace{0.5cm}
-inoremap ,1 \vspace{1cm}
-inoremap ,03 \vspace{0.3cm}
-inoremap yy &<Space>
+inoremap ,lsc \textsc{}<++><Esc>4hi
+inoremap ,lss \section*{}<++><Esc>4hi
+inoremap ,luu \usepackage{}<++><Esc>4hi
+inoremap ,lus \usepackage[]{<++>}<++><Esc>10hi
+inoremap ,lbf \textbf{}<++><Esc>4hi
+inoremap ,lct \citet{}<++><Esc>4hi
+inoremap ,lmc \multicolumn{}{l}{``<++>''}<++><Esc>17hi
+inoremap ,lts \textsuperscript{}<++><Esc>4hi
+inoremap ,lcp \citep{}<++><Esc>4hi
+inoremap ,lit \textit{}<++><Esc>4hi
+inoremap ,lin \include{}<++><Esc>4hi
+inoremap ,lnn \textsc{neg}
+inoremap ,lno \noindent
+inoremap ,ltt \begin{tabular}{<++>}<CR><++><Space>\\<CR><++><Space>\\<CR><++><Space>\\<CR>\end{tabular}<++>
+inoremap ,lct \citet{}<++><Esc>4hi
+inoremap ,lipa {\setmainfont{Doulos SIL}<Space>}<Esc>1hi
+inoremap ,l05 \vspace{0.5cm}
+inoremap ,l1 \vspace{1cm}
+inoremap ,l03 \vspace{0.3cm}
+inoremap ,yy &<Space>
+
+"Atajos R
+inoremap ,rr <Space><-<Space>
+inoremap ,rs seq(,<space><++>)<++><Esc>10hi
+inoremap <C-CR> <Esc>:lua require("iron.core").send_line()<CR>a<CR>
